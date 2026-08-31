@@ -1,0 +1,25 @@
+---
+description: GitHub Pages + reg.ru deploy for car2me.ru. Apply when setting up hosting, domain, DNS, SSL, or git push for publication.
+alwaysApply: false
+---
+
+# Публикация car2me.ru
+
+При настройке инфраструктуры **сначала прочитай skill** `static-site-github-pages`.
+
+## Стек
+
+- Хостинг: **GitHub Pages**
+- Домен: **car2me.ru** (reg.ru)
+- GitHub: **nletra1983/car2me.ru**
+- SSL: **Enforce HTTPS** в GitHub Pages
+
+## Обновление
+
+```powershell
+git add .
+git commit -m "Update content"
+git push
+```
+
+Полная инструкция: `DEPLOY-MANUAL.md`
