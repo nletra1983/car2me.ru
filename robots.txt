@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://car2me.ru/sitemap.xml

@@ -20,7 +20,7 @@
 В папке проекта в PowerShell:
 
 ```powershell
-cd D:\Cursor\car2me-site
+cd D:\car2me-site
 git init
 git add .
 git commit -m "Initial commit: static site"
@@ -90,7 +90,16 @@ car2me.ru
 
 ⚠️ В CNAME указывайте **`nletra1983.github.io`**, не `nletra1983.github.io/car2me.ru`.
 
-8. Сохраните. Подождите **15–60 минут**.
+8. **Рекомендуется: 4 AAAA-записи** для `@` (IPv6 GitHub Pages):
+
+| Тип | Subdomain | Значение |
+|-----|-----------|----------|
+| AAAA | @ | 2606:50c0:8000::153 |
+| AAAA | @ | 2606:50c0:8001::153 |
+| AAAA | @ | 2606:50c0:8002::153 |
+| AAAA | @ | 2606:50c0:8003::153 |
+
+9. Сохраните. Подождите **15–60 минут**, в GitHub → Pages → **Check again**.
 
 ---
 
@@ -119,7 +128,7 @@ nslookup car2me.ru 8.8.8.8
 |---------|------------|
 | HTTPS нельзя включить | Подождать DNS, нажать Check again — не включать certbot и не покупать SSL |
 | Открывается страница reg.ru «домен не подключён» | Удалить парковочные A-записи, добавить 4 A на GitHub IP |
-| `InvalidDNSError` в GitHub | Проверить записи, подождать до 24 ч, Check again |
+| `InvalidDNSError` / «DNS Check in Progress» >24 ч | A-записи уже верные? Нажми **Remove** у custom domain → подожди 1 мин → снова `car2me.ru` → **Check again**. Добавь 4 **AAAA** (см. ниже). HTTPS появится после выпуска сертификата |
 | Работает www, не работает без www | Добавить все 4 A-записи для `@` |
 | Сайт открывается через VPN, но не дома | Локальный DNS провайдера; проверить `nslookup car2me.ru 8.8.8.8` |
 | Думали, нужен Netlify / VPS | Для статического сайта достаточно GitHub Pages |
@@ -131,7 +140,7 @@ nslookup car2me.ru 8.8.8.8
 После правок в Cursor:
 
 ```powershell
-cd D:\Cursor\car2me-site
+cd D:\car2me-site
 git add .
 git commit -m "Update content"
 git push

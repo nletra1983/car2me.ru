@@ -3,57 +3,1149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Car2Me — подбор и доставка автомобилей из Кореи">
-  <title>Car2Me — авто из Кореи</title>
+  <title>Car2Me — shortlist моделей авто под ваши критерии за 24 часа</title>
+  <meta name="description" content="Персональный shortlist из 5–7 моделей авто под бюджет и сценарии: Корея, Япония, Китай, б/у РФ. PDF с матрицей и топ-3 за 24 ч — 2 000 ₽. Без звонков и передачи контактов брокерам.">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <link rel="canonical" href="https://car2me.ru/">
+  <meta name="theme-color" content="#0c0f14">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Car2Me">
+  <meta property="og:url" content="https://car2me.ru/">
+  <meta property="og:title" content="Car2Me — shortlist моделей авто под ваши критерии">
+  <meta property="og:description" content="Подбор моделей, не лотов: матрица критериев, топ-3, проверка бюджета «под ключ». Корея, Япония, Китай, б/у РФ. 2 000 ₽, результат за 24 часа.">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Car2Me — shortlist моделей авто под ваши критерии">
+  <meta name="twitter:description" content="5–7 моделей под ваш бюджет и сценарии. PDF за 24 ч, без звонков и передачи контактов брокерам.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Car2Me",
+    "url": "https://car2me.ru/",
+    "description": "Персональный shortlist моделей автомобилей под критерии клиента: матрица сравнения, топ-3, проверка бюджета под ключ. Корея, Япония, Китай, б/у РФ.",
+    "areaServed": "RU",
+    "priceRange": "₽",
+    "email": "hello@car2me.ru",
+    "offers": {
+      "@type": "Offer",
+      "price": "2000",
+      "priceCurrency": "RUB",
+      "description": "Shortlist моделей авто в PDF за 24 часа"
+    }
+  }
+  </script>
   <style>
     :root {
-      color-scheme: light dark;
-      --bg: #0f1419;
-      --text: #f5f7fa;
-      --muted: #9aa4b2;
-      --accent: #3b82f6;
+      --bg: #0c0f14;
+      --surface: #151a22;
+      --surface-2: #1c2330;
+      --border: #2a3344;
+      --text: #eef2f7;
+      --muted: #8b97a8;
+      --accent: #3d8bfd;
+      --accent-hover: #5a9dff;
+      --accent-soft: rgba(61, 139, 253, 0.12);
+      --success: #34d399;
+      --warning: #fbbf24;
+      --radius: 14px;
+      --max: 720px;
     }
+
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #1e293b, var(--bg));
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      padding: 2rem;
+      line-height: 1.65;
+      font-size: 1.05rem;
     }
-    main {
-      max-width: 36rem;
-      text-align: center;
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.25rem;
     }
+
+    /* Header */
+    header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(12, 15, 20, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    .header-cta {
+      font-size: 0.9rem;
+      padding: 0.55rem 1rem;
+      white-space: nowrap;
+    }
+
+    /* Sections */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
     h1 {
-      font-size: clamp(2rem, 6vw, 3rem);
-      margin: 0 0 0.75rem;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+    }
+
+    p { margin: 0 0 1rem; color: var(--muted); }
+    p:last-child { margin-bottom: 0; }
+
+    .lead {
+      font-size: 1.15rem;
+      color: var(--text);
+      opacity: 0.9;
+    }
+
+    .hero {
+      padding-top: 2.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--accent-soft);
+      border: 1px solid rgba(61, 139, 253, 0.25);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
       letter-spacing: -0.02em;
     }
-    p {
-      margin: 0;
+
+    .price-old {
+      font-size: 1rem;
       color: var(--muted);
-      line-height: 1.6;
+      text-decoration: line-through;
     }
-    .badge {
-      display: inline-block;
+
+    .price-note {
+      font-size: 0.9rem;
+      color: var(--warning);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover { border-color: var(--muted); }
+
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       margin-top: 1.5rem;
-      padding: 0.4rem 0.75rem;
-      border: 1px solid #334155;
-      border-radius: 999px;
+    }
+
+    .cta-hint {
       font-size: 0.85rem;
       color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    /* Lists */
+    ul {
+      margin: 0 0 1rem;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.65rem;
+      color: var(--muted);
+    }
+
+    ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .card:last-child { margin-bottom: 0; }
+
+    .card h3 { color: var(--text); }
+
+    .card p { font-size: 0.95rem; }
+
+    .grid-2 {
+      display: grid;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    @media (min-width: 560px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+
+    .grid-2 > .card {
+      margin-bottom: 0;
+      height: 100%;
+    }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      gap: 1rem;
+      counter-reset: step;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .step-body h3 { margin-bottom: 0.25rem; }
+    .step-body p { font-size: 0.95rem; margin: 0; }
+
+    /* Case */
+    .case-card {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .case-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-result {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.25rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 420px) {
+      .case-result { grid-template-columns: 1fr; }
+    }
+
+    .case-stat {
+      font-size: 0.88rem;
+    }
+
+    .case-stat strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .case-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .case-author-photo {
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(61, 139, 253, 0.35);
+    }
+
+    .case-author-name {
+      margin: 0 0 0.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .case-author-role {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .case-author-badge {
+      display: inline-block;
+      margin-top: 0.45rem;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-radius: 999px;
+    }
+
+    .case-title {
+      margin: 0 0 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    .case-teaser {
+      margin: 0;
+      font-size: 0.98rem;
+    }
+
+    .case-details {
+      margin-top: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(12, 15, 20, 0.35);
+      overflow: hidden;
+    }
+
+    .case-details summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .case-details summary::-webkit-details-marker { display: none; }
+
+    .case-details summary::after {
+      content: "▼";
+      font-size: 0.7rem;
+      opacity: 0.7;
+      transition: transform 0.2s;
+    }
+
+    .case-details[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .case-details summary:hover { color: var(--accent-hover); }
+
+    .case-full {
+      padding: 0 1.1rem 1.15rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .case-full h4 {
+      margin: 1.1rem 0 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .case-full h4:first-child { margin-top: 0.85rem; }
+
+    .case-full p,
+    .case-full li {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    .case-full ul {
+      margin: 0 0 0.75rem;
+      padding-left: 1.1rem;
+    }
+
+    .case-full li { margin-bottom: 0.35rem; }
+
+    .case-full li::before { content: none; }
+
+    .case-full ul li {
+      list-style: disc;
+      padding-left: 0;
+    }
+
+    .case-outcome {
+      margin-top: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: var(--accent-soft);
+      border-radius: 8px;
+      border: 1px solid rgba(61, 139, 253, 0.2);
+    }
+
+    .case-outcome p {
+      margin: 0;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .case-telegram {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .case-telegram a,
+    .case-telegram a:visited {
+      color: #fff;
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .case-telegram a:hover {
+      color: #fff;
+      opacity: 0.85;
+    }
+
+    .case-sample {
+      margin-top: 1.25rem;
+      padding: 1.15rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+    }
+
+    .case-sample h4 {
+      margin: 0 0 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .case-sample p {
+      margin: 0 0 0.85rem;
+      font-size: 0.9rem;
+    }
+
+    .case-sample-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .case-sample-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Why blocks */
+    .why-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .why-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .why-item h3 {
+      color: var(--accent);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .why-item h3.why-headline {
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
+      text-transform: none;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0.5rem 0 1rem;
+      font-weight: 700;
+    }
+
+    .why-item p { margin: 0; }
+
+    /* Urgency banner */
+    .urgency {
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .urgency p {
+      color: var(--text);
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2.5rem 0 3rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    footer p { font-size: 0.85rem; }
+
+    footer a,
+    .legal-note a {
+      color: var(--accent);
+    }
+
+    .footer-legal {
+      margin-bottom: 0.75rem;
+    }
+
+    .disclaimer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .disclaimer strong { color: var(--text); }
+
+    .final-cta {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+
+    .final-cta h2 { margin-bottom: 0.5rem; }
+
+    .anchor-target {
+      scroll-margin-top: 5rem;
+    }
+
+    .pay-methods {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      align-items: start;
+    }
+
+    @media (min-width: 560px) {
+      .pay-methods { grid-template-columns: 1fr 1fr; }
+    }
+
+    .pay-method {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.15rem;
+      text-align: center;
+    }
+
+    .pay-method-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+
+    .pay-method h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .pay-method p {
+      font-size: 0.82rem;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .pay-detail {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .qr-placeholder {
+      width: 140px;
+      height: 140px;
+      margin: 0.75rem auto 0;
+      background: var(--surface-2);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 0.5rem;
+    }
+
+    .qr-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .order-flow {
+      background: var(--accent-soft);
+      border: 1px solid rgba(61, 139, 253, 0.2);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-top: 1.5rem;
+    }
+
+    .order-flow ol {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .order-flow li { margin-bottom: 0.35rem; }
+    .order-flow li:last-child { margin-bottom: 0; }
+    .order-flow strong { color: var(--text); }
+
+    .pay-link-btn {
+      display: inline-block;
+      margin-top: 0.65rem;
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .pay-link-btn:hover { text-decoration: underline; }
+
+    .form-embed {
+      margin-top: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .form-embed iframe {
+      display: block;
+      width: 100%;
+      min-height: 600px;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .form-embed-fallback {
+      text-align: center;
+      padding: 1rem 0 0;
+      font-size: 0.9rem;
+    }
+
+    .form-embed-fallback a { color: var(--accent); }
+
+    .cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 1.25rem;
+      background: var(--surface-2);
+      border-top: 1px solid var(--border);
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .cookie-banner-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1rem;
+      justify-content: space-between;
+    }
+
+    .cookie-banner p {
+      flex: 1 1 220px;
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .cookie-banner a {
+      color: var(--accent);
+    }
+
+    .cookie-banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .cookie-banner .btn {
+      padding: 0.55rem 1.1rem;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
+
+  <header>
+    <div class="wrap header-inner">
+      <a href="#" class="logo">Car<span>2</span>Me</a>
+      <a href="#order" class="btn btn-primary header-cta">Заказать за 2 000 ₽</a>
+    </div>
+  </header>
+
   <main>
-    <h1>Car2Me</h1>
-    <p>Подбор и доставка автомобилей из Кореи.<br>Сайт в разработке.</p>
-    <div class="badge">car2me.ru</div>
+
+    <!-- Ваша выгода -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-badge">Модели, не конкретные лоты</div>
+        <h1>Персональный shortlist моделей авто под ваши критерии — за 24 часа</h1>
+        <p class="lead">Корея, Япония, Китай, б/у в России — с учётом вашего бюджета и сценариев. Сначала понимаете, <em>какую</em> модель искать, потом ищете конкретные лоты.</p>
+
+        <div class="price-row">
+          <span class="price">2 000 ₽</span>
+          <span class="price-old">3 500 ₽</span>
+          <span class="price-note">до 15 сентября 2026</span>
+        </div>
+
+        <div class="cta-group">
+          <a href="#order" class="btn btn-primary">Заказать shortlist</a>
+          <a href="#case" class="btn btn-secondary">Смотреть реальный пример</a>
+        </div>
+        <p class="cta-hint">Оплата → одна форма (скрин перевода + ваши сценарии, 15–20 мин) → shortlist за 24 часа</p>
+      </div>
+    </section>
+
+    <!-- Потому что -->
+    <section>
+      <div class="wrap">
+        <span class="section-label">Потому что</span>
+        <h2>Выбор модели — самая долгая часть покупки</h2>
+        <ul>
+          <li><strong style="color:var(--text)">Агенты предлагают то, что им удобно продать</strong> — не то, что подходит вам. Тратите время на чужие варианты и уходите от лучшего выбора.</li>
+          <li><strong style="color:var(--text)">Самостоятельный выбор — недели и месяцы</strong> — нужно разбираться в характеристиках, рынках и комплектациях, которых нет в обычных фильтрах.</li>
+          <li><strong style="color:var(--text)">Мы не продаём ваш контакт</strong> — не звоним, не передаём данные брокерам. Контакт нужен только после оплаты, чтобы отправить результат.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Наш продукт -->
+    <section>
+      <div class="wrap">
+        <span class="section-label">Наш продукт</span>
+        <h2>Что вы получите</h2>
+        <p>Shortlist <strong style="color:var(--text)">моделей</strong> под ваши сценарии, стиль вождения и критерии — в том числе те, которых нет в фильтрах на сайтах: спальное место, клиренс, багаж под сап и канистры и др.</p>
+
+        <div class="grid-2" style="margin-top:1.5rem">
+          <div class="card">
+            <h3>Топ-5–7 моделей</h3>
+            <p>Описательное сравнение по вашим критериям, бенчмарк и типичные риски каждой модели.</p>
+          </div>
+          <div class="card">
+            <h3>Итог «топ-3 и почему»</h3>
+            <p>Три финалиста с обоснованием — с чего начать поиск лотов.</p>
+          </div>
+          <div class="card">
+            <h3>Ответ на главный вопрос</h3>
+            <p>«Японец или кореец?», «робот или вариатор?» — с прицелом на ваши сценарии, не абстрактно.</p>
+          </div>
+          <div class="card">
+            <h3>Формат</h3>
+            <p>PDF — структурированный документ, к которому можно вернуться в любой момент.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Как это работает -->
+    <section>
+      <div class="wrap">
+        <span class="section-label">Как это работает</span>
+        <h2>Три шага</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h3>Оплатите 2 000 ₽</h3>
+              <p>QR-код, ссылка Сбербанка или перевод по номеру телефона через СБП.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h3>Заполните одну форму</h3>
+              <p>Прикрепите скрин подтверждения оплаты и ответьте на вопросы о критериях — 15–20 минут, без звонков.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h3>Shortlist за 24 часа</h3>
+              <p>После проверки оплаты — результат на email + чек об оплате.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Кейс -->
+    <section id="case" class="anchor-target">
+      <div class="wrap">
+        <span class="section-label">Кейс автора</span>
+        <h2>Как это работает на практике</h2>
+        <div class="case-card">
+
+          <!-- АВТОР — имя/роль можно править -->
+          <div class="case-author">
+            <img src="author-round.png" alt="Наталья Кузменкова" class="case-author-photo" width="72" height="72">
+            <div>
+              <p class="case-author-name">Наталья Кузменкова</p>
+              <p class="case-author-role">20 лет в IT · product / BA · в авто не разбиралась — отличаю по цвету</p>
+              <span class="case-author-badge">Кейс автора Car2Me</span>
+            </div>
+          </div>
+
+          <!-- КРАТКИЙ КЕЙС — правьте текст ниже -->
+          <div class="case-meta">Август 2026 · бюджет до 1,5 млн ₽ «под ключ»</div>
+          <h3 class="case-title">Подбор, когда продавцы предлагают своё, а не ваше</h3>
+          <p class="case-teaser">На обратном пути с Байкала в Питер движок у моей старенькой машинки сгорел, и я решила рвануть на Дальний Восток, чтобы вернуться домой на новой машине. Мне нужно было за пару дней определиться, какую машину хочу. А как это сделать, если я машины различаю только по цвету, но при этом много путешествую и то, насколько удобной и живучей будет машина — для меня крайне важно? Агенты и брокеры, к сожалению, не сильно помогли с этим: предлагали то, что выгодно им, а не мне, и лишь зря тратили моё время десятками своих успешных кейсов. Как опытный IT-шник, я решила свою проблему быстро и системно. Получился Car2Me — сервис, который помогает выбрать подходящие под конкретного человека модели, требует от вас всего 20 минут и не навязывает никаких доп. услуг.</p>
+
+          <div class="case-result">
+            <div class="case-stat"><strong>18 критериев</strong> с весами</div>
+            <div class="case-stat"><strong>Топ-3</strong> Raize · Rush · Creta</div>
+            <div class="case-stat"><strong>6 моделей</strong> в матрице с баллами</div>
+            <div class="case-stat"><strong>Проверка</strong> бюджета под ключ</div>
+          </div>
+
+          <div class="case-sample">
+            <h4>Пример результата — shortlist в PDF</h4>
+            <p>Матрица моделей, риски, топ-3 с обоснованием и компромиссы «что выбрать между финалистами». Реальный отчёт по этому кейсу.</p>
+            <div class="case-sample-actions">
+              <a href="Отчёты/Наталья.pdf" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Открыть пример PDF</a>
+            </div>
+          </div>
+
+          <details class="case-details">
+            <summary>Читать полный кейс</summary>
+            <div class="case-full">
+
+              <h4>Ситуация</h4>
+              <p>Я много путешествую и прекрасно знаю, куда меня может занести. А вот в машинах не разбираюсь: отличаю их только по цвету. Всегда думала — разберусь, когда припрёт покупать новое авто. И вот два месяца путешествую по маршруту Питер — Алтай — Байкал, и на обратном пути ломаюсь в Томске. Двигатель ремонту не подлежит, и чинить машину финансово не выгодно. Ну что ж, была у меня идея взять машину с Азии без пробега по России и самой катнуть с Дальнего Востока через всю страну до Питера. Вот и пришло время осуществить мечту! Неожиданно мне нужно за пару дней понять, <em>какую модель</em> искать под доставку с Дальнего Востока. Мой бюджет до 1,5 млн «под ключ», сон в салоне, грунтовки и длинные трассы. И ноль желания становиться экспертом в выборе авто — хочу купить и забыть, только кайфовать от результата.</p>
+
+              <h4>Что пошло не так</h4>
+              <p>Чтобы сократить время на поиск, обратилась к частным людям и компаниям, которые постоянно гоняют машины. Но, к сожалению, все поголовно агенты и брокеры засыпали меня чужими видео и «успешными кейсами», и каждый уверял в целесообразности какой-то узкой ниши или даже марки. Кто-то возил только китайцев, кто-то советовал только японские аукционы, кто-то рекомендовал брать уже с Владика. В общем, предлагали то, что им самим выгодно и удобно продать, а не то, что подходит под мои сценарии, критерии и бюджет. И тратили на это моё драгоценное время — что вообще непростительно!</p>
+
+              <h4>Что сделала</h4>
+              <ul>
+                <li>Ну, я опытный IT-шник. Умею решать задачи системно, чтобы получить объективные результаты с учётом максимального числа вводных, и правильно использовать для этого различные IT-сервисы. Зафиксировала для себя 18 критериев с весами: мотор, клиренс, сон в салоне, запас хода, ремонт в РФ, бюджет под ключ, утиль и др.</li>
+                <li>Собрала широкий список марок авто и отсеяла лишнее: лидер / shortlist / осторожно / не рассматривать. Конечно, это я тоже делала не вручную, а научила систему ранжировать так, чтобы получить наилучший для себя результат.</li>
+                <li>Сверила цены с китайскими и корейскими ресурсами, аукционами Японии и б/у РФ. Посчитала утильсбор и таможенные пошлины, учла стоимость услуг посредников на оформление и доставку. Отсеяла многие «красивые» модели, не влезающие в мой бюджет под ключ.</li>
+              </ul>
+
+              <h4>Что показал shortlist (артефакт)</h4>
+              <div class="case-outcome">
+                <p><strong>Матрица из 6 моделей</strong> с баллами 1–100 по критичным и важным критериям: проходимость, сон в салоне, автомат без вариатора, возраст ≤5 лет, бюджет под ключ. По сумме баллов лидирует <strong>Toyota Rush / Daihatsu Terios</strong> (82 балла): классический 4AT, клиренс ~220&nbsp;мм, 1,05–1,35&nbsp;млн — но типичные лоты 2016–2018, не укладываются в «не старше ~5 лет».</p>
+                <p style="margin-top:0.75rem"><strong>Топ-3 для старта поиска</strong> (с учётом возраста и денег):</p>
+                <ul>
+                  <li><strong>Toyota Raize</strong> (78) — свежие лоты 2021+, реально в 1,5&nbsp;млн; компромисс: только CVT, слабый сон в салоне, бак ~36&nbsp;л</li>
+                  <li><strong>Rush / Terios</strong> (82) — если готовы смириться с возрастом ради 4AT и грунтовки</li>
+                  <li><strong>Hyundai Creta 1.6 6AT</strong> (74) — левый руль, не вариатор; 1,45–1,75&nbsp;млн, на грани бюджета (до ~1,65 реальнее)</li>
+                </ul>
+                <p style="margin-top:0.75rem"><strong>Отсечено проверкой рынка:</strong> Honda Fit — в нужном возрасте только CVT; Jetta VS5 — турбо и выше 1,5&nbsp;млн; Escudo — лоты 8+ лет. В PDF — таблица рисков, три сценария компромисса (Raize / Rush / Creta) и ответы на вопросы из анкеты.</p>
+                <p style="margin-top:0.75rem">Итог — не «берите вот эту машину», а <strong>с чего начать поиск лотов</strong> и от каких моделей отказаться до траты времени на брокеров.</p>
+              </div>
+
+              <h4>Почему Car2Me</h4>
+              <p>Этот shortlist сначала сделала для себя. Мне не пришлось погружаться в технические детали, но зато, когда я показывала уже готовый список брокерам — они не верили, что перед ними женщина, а не авто-эксперт. Говорят: «впервые видим клиента, который так хорошо понимает, что хочет. Лучший клиент!»<br>Car2Me — тот же подход для людей, которые хотят один раз выбрать модель правильно: 20 минут на форму, PDF с матрицей и вердиктами, без навязанных услуг.</p>
+
+              <p class="case-telegram">
+                Хотите убедиться, что я реальный человек? Вот мой канал (вообще не про авто), а в нём посты про это путешествие в августе 2026:
+                <a href="https://t.me/SmartSpeaker_public" target="_blank" rel="noopener noreferrer">Кайф и Драйв и Смарт Эффект</a>
+          
+              </p>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 почему -->
+    <section>
+      <div class="wrap">
+        <span class="section-label">Почему Car2Me</span>
+        <div class="why-item">
+          <h3 class="why-headline">Почему shortlist моделей</h3>
+          <p>Сначала модель — потом лот. Фильтры на авто-маркетплейсах закрывают лишь типичные характеристики, но не учитывают ваши сценарии и особые требования типа «спальное место» и клиренс. Ошибка на этапе модели стоит месяцев сожалений и лишних денег.</p>
+        </div>
+        <div class="why-item" style="margin-top:1.5rem">
+          <span class="section-label">Почему у нас</span>
+          <h3 class="why-headline">Платите за выбор — не отдаёте контакт</h3>
+          <p>Обычно бесплатный подбор — это лид для продажи. Сначала вы сообщаете свой контакт, а потом менеджер «приседает на уши». У нас наоборот: вы платите за объективный shortlist и избавляетесь от навязчивых предложений.</p>
+        </div>
+        <div class="why-item" style="margin-top:1.5rem">
+          <span class="section-label">Почему по этой цене</span>
+          <h3 class="why-headline">2 000 ₽ — ранняя цена</h3>
+          <p>Пока собираем кейсы и оттачиваем сервис. При бюджете на авто 600 000–5 000 000 ₽ это доли процента — дешевле одной ошибки с неподходящей моделью. Экономите недели личного времени и снимаете неопределённость.</p>
+        </div>
+        <div class="why-item" style="margin-top:1.5rem">
+          <span class="section-label">Почему сейчас</span>
+          <h3 class="why-headline">До 15 сентября — 2 000 ₽</h3>
+          <p>После 15 сентября цена вырастет до 3 500 ₽. Заказав сегодня, получите полный shortlist в течение 24 часов после заполнения формы.</p>
+          <div class="urgency">
+            <p>⏱ <strong>2 000 ₽</strong> действует до <strong>15 сентября 2026</strong>. Потом — <strong>3 500 ₽</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Заказ: оплата + форма -->
+    <section id="order" class="anchor-target">
+      <div class="wrap">
+        <span class="section-label">Заказ</span>
+        <h2>Оплатите и заполните форму</h2>
+        <p>Сначала перевод <strong style="color:var(--text)">2 000 ₽</strong>, затем одна форма: скрин оплаты + ваши критерии. Shortlist пришлём в течение 24 часов после получения формы с оплатой.</p>
+
+        <div class="price-row" style="margin-top:1rem">
+          <span class="price">2 000 ₽</span>
+          <span class="price-old">3 500 ₽</span>
+          <span class="price-note">до 15 сентября</span>
+        </div>
+
+        <div class="pay-methods">
+          <div class="pay-method">
+            <div class="pay-method-icon">📱</div>
+            <h3>QR-код · 2 000 ₽</h3>
+            <p>Отсканируйте в приложении банка (СБП)</p>
+            <div class="qr-placeholder" id="qr-code">
+              <img src="qr-pay.jpg" alt="QR-код для оплаты 2000 рублей" width="140" height="140">
+            </div>
+            <a href="https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79219566853&amp;bankCode=100000000111" class="pay-link-btn" target="_blank" rel="noopener noreferrer">Открыть оплату в Сбербанке →</a>
+          </div>
+          <div class="pay-method">
+            <div class="pay-method-icon">💳</div>
+            <h3>По номеру телефона</h3>
+            <p>СБП или перевод в Сбербанк. Сумма: <strong style="color:var(--text)">2 000 ₽</strong>. В комментарии: <strong style="color:var(--text)">car2me</strong></p>
+            <span class="pay-detail" id="pay-phone">+7 921 956-68-53</span>
+            <a href="https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79219566853&amp;bankCode=100000000111" class="pay-link-btn" target="_blank" rel="noopener noreferrer">Ссылка для оплаты →</a>
+          </div>
+        </div>
+
+        <p class="legal-note" style="margin-top:1.25rem;font-size:0.88rem">
+          Оплачивая услугу, вы принимаете условия <a href="offer.html">публичной оферты</a>.
+          Данные из формы обрабатываются по <a href="privacy.html">политике персональных данных</a>;
+          перед отправкой нужно дать <a href="pd-consent.html">согласие</a>.
+        </p>
+
+        <div class="order-flow">
+          <p style="color:var(--text);margin-bottom:0.65rem;font-weight:600">После оплаты:</p>
+          <ol>
+            <li>Прокрутите ниже к форме или нажмите кнопку</li>
+            <li><strong>Прикрепите скрин</strong> подтверждения перевода</li>
+            <li>Заполните вопросы о критериях — 15–20 минут</li>
+          </ol>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;text-align:center;padding:2rem 1.5rem">
+          <a href="#form" class="btn btn-primary" id="form-btn" style="width:100%;max-width:360px">
+            Я оплатил(а) — заполнить форму
+          </a>
+     
+        </div>
+
+        <div class="form-embed anchor-target" id="form">
+          <span class="section-label">Форма заказа</span>
+          <h2 style="margin-bottom:1rem">Критерии для shortlist</h2>
+          <script src="https://forms.yandex.ru/_static/embed.js"></script>
+          <iframe src="https://forms.yandex.ru/cloud/6a9568266d2d731deef825fd?iframe=1" frameborder="0" name="ya-form-6a9568266d2d731deef825fd" title="Форма заказа Car2Me"></iframe>
+          <p class="form-embed-fallback">
+            Форма не загрузилась?
+            <a href="https://forms.yandex.ru/cloud/6a9568266d2d731deef825fd" target="_blank" rel="noopener noreferrer">Открыть в новой вкладке</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="wrap">
+        <h2>Готовы сузить выбор до подходящих моделей?</h2>
+        <p>2 000 ₽ до 15 сентября · результат за 24 часа</p>
+        <div class="cta-group" style="justify-content:center;margin-top:1.25rem">
+          <a href="#order" class="btn btn-primary">Заказать за 2 000 ₽</a>
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="disclaimer">
+        <p><strong>Важно.</strong> Car2Me — информационный сервис подбора <em>моделей</em> автомобилей. Мы не брокер, не дилер и не получаем комиссию с продажи лотов. Не гарантируем покупку конкретного автомобиля и не оцениваем отдельные объявления (VIN). Shortlist помогает сузить выбор моделей — поиск и покупка лота остаётся на вашей стороне или у вашего брокера.</p>
+        <p style="margin-top:0.75rem;margin-bottom:0">Исполнитель: Кузменкова Наталья Николаевна, самозанятая, ИНН 782701946209 · <a href="mailto:hello@car2me.ru">hello@car2me.ru</a>. Оплата — с выдачей чека в «Мой налог».</p>
+      </div>
+      <p class="footer-legal">
+        <a href="offer.html">Оферта</a> ·
+        <a href="privacy.html">Персональные данные</a> ·
+        <a href="pd-consent.html">Согласие на обработку ПДн</a>
+      </p>
+      <p>© 2026 Car2Me · car2me.ru</p>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner" hidden>
+    <div class="cookie-banner-inner">
+      <p>Сайт использует cookie для статистики посещений. Подробнее — в <a href="privacy.html">политике персональных данных</a>. Аналитика включается только после вашего согласия.</p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-secondary" id="cookie-decline">Только необходимое</button>
+        <button type="button" class="btn btn-primary" id="cookie-accept">Принять</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="metrika.js"></script>
+
 </body>
 </html>

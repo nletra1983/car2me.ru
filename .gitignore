@@ -4,3 +4,10 @@ desktop.ini
 *.swp
 *.swo
 *~
+
+# Car2Me — персональные данные клиентов
+Ответы/*.xlsx
+Ответы/processed.json
+Отчёты/*
+!Отчёты/.gitkeep
+!Отчёты/Наталья.pdf
