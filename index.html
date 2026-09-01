@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (location.protocol === 'http:' && !/localhost|127\.0\.0\.1/.test(location.hostname)) {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
   <title>Car2Me — shortlist моделей авто под ваши критерии за 24 часа</title>
   <meta name="description" content="Персональный shortlist из 5–7 моделей авто под бюджет и сценарии: Корея, Япония, Китай, б/у РФ. PDF с матрицей и топ-3 за 24 ч — 2 000 ₽. Без звонков и передачи контактов брокерам.">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
