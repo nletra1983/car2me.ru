@@ -17,12 +17,19 @@ const GOALS = {
 const CONSENT_KEY = 'car2me_analytics_consent';
 
 function metrikaAllowed() {
-  return METRIKA_ID > 0 && localStorage.getItem(CONSENT_KEY) === '1';
+  return METRIKA_ID > 0;
 }
 
 function reachGoal(goal) {
-  if (!metrikaAllowed() || typeof window.ym !== 'function') return;
-  window.ym(METRIKA_ID, 'reachGoal', goal);
+  if (!metrikaAllowed()) return;
+  const fire = (attempts = 0) => {
+    if (typeof window.ym !== 'function') {
+      if (attempts < 30) setTimeout(() => fire(attempts + 1), 100);
+      return;
+    }
+    window.ym(METRIKA_ID, 'reachGoal', goal);
+  };
+  fire();
 }
 
 function loadMetrika() {
@@ -55,18 +62,6 @@ function loadMetrika() {
   });
 }
 
-function sendFirstHit(goal) {
-  const tryHit = (attempts = 0) => {
-    if (typeof window.ym !== 'function') {
-      if (attempts < 30) setTimeout(() => tryHit(attempts + 1), 100);
-      return;
-    }
-    window.ym(METRIKA_ID, 'hit', window.location.href);
-    if (goal) window.ym(METRIKA_ID, 'reachGoal', goal);
-  };
-  tryHit();
-}
-
 function initConsentBanner() {
   const banner = document.getElementById('cookie-banner');
   const acceptBtn = document.getElementById('cookie-accept');
@@ -76,7 +71,6 @@ function initConsentBanner() {
   const stored = localStorage.getItem(CONSENT_KEY);
   if (stored === '1' || stored === '0') {
     banner.hidden = true;
-    if (stored === '1') loadMetrika();
     return;
   }
 
@@ -85,8 +79,7 @@ function initConsentBanner() {
   acceptBtn.addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, '1');
     banner.hidden = true;
-    loadMetrika();
-    sendFirstHit(GOALS.cookieAccept);
+    reachGoal(GOALS.cookieAccept);
   });
 
   declineBtn.addEventListener('click', () => {
@@ -149,11 +142,8 @@ function initSectionGoals() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  loadMetrika();
   initConsentBanner();
   initClickGoals();
   initSectionGoals();
-
-  if (metrikaAllowed()) {
-    loadMetrika();
-  }
 });
