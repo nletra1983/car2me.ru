@@ -5,11 +5,25 @@ desktop.ini
 *.swo
 *~
 
+# Python
+scripts/__pycache__/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
 # Car2Me — персональные данные / рабочие файлы клиентов (не в git)
 Ответы/
 Отчёты/*
 !Отчёты/.gitkeep
 
-# Личные/служебные PDF в корне
+# Личные/служебные файлы в корне (не витрина сайта)
 printForm*.pdf
 *.tmp
+author.jpg
+author-original.jpg
+390e2f25-*.jpg
+
+# Черновики/материалы не для репо
+content/**/*.pptx
+*.pptx
