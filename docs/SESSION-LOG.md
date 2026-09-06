@@ -46,5 +46,13 @@
 - Сделано: копия `Отчёты/Наталья.pdf` → `samples/primer-otchyota.pdf`; ссылка на лендинге обновлена; из git tracking убран клиентский путь; `.gitignore` для `Ответы/` и `Отчёты/*`
 - Файлы: `samples/primer-otchyota.pdf`, `samples/README.md`, `index.html`, `.gitignore`
 - Решения: витринный пример отдельно от рабочих отчётов
-- Открыто / не сделано: push на GitHub (если ещё не сделан) — иначе на проде старая ссылка
-- Проверка: локальный файл samples есть (~149 KB); href = samples/primer-otchyota.pdf
+- Открыто / не сделано: —
+- Проверка: запушено на GitHub; href = samples/primer-otchyota.pdf
+
+## 2026-09-06 — гигиена репо (пакеты коммитов)
+
+- Сделано: усилен `.gitignore`; закоммичены `docs/` (карта зон, architecture, smoke stub, requirements stub), session-log rule + shortlist skill, `scripts/`, маркетинг/content; убран draw.io `.bkp` из репо; `git push`
+- Файлы: см. коммиты `702a8e7`…`3751813`
+- Решения: зоны A/B/C/D в `docs/README.md`; ПДн и личные фото автора не в git; витринный PDF в `samples/`
+- Открыто / не сделано: полноценные REQ-001… (остаток блока 2); блок 3 деплой-упражнение
+- Проверка: `git status` чистый от зон A/C; локально остаются игнорируемые author.jpg / Ответы / __pycache__
