@@ -27,3 +27,6 @@ author-original.jpg
 # Черновики/материалы не для репо
 content/**/*.pptx
 *.pptx
+*.bkp
+docs/.$*.bkp
+docs/.*.bkp
