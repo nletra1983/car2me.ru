@@ -56,3 +56,51 @@
 - Решения: зоны A/B/C/D в `docs/README.md`; ПДн и личные фото автора не в git; витринный PDF в `samples/`
 - Открыто / не сделано: полноценные REQ-001… (остаток блока 2); блок 3 деплой-упражнение
 - Проверка: `git status` чистый от зон A/C; локально остаются игнорируемые author.jpg / Ответы / __pycache__
+
+## 2026-09-06 — requirements: раздельные REQ / NFR
+
+- Сделано: в `docs/requirements/` зафиксированы раздельные индексы `REQ-NNN` и `NFR-NNN`; заведён общий файл NFR для сайта
+- Файлы: `docs/requirements/README.md`, `docs/requirements/NFR.md`, `docs/README.md`
+- Решения: функциональные — по файлу на REQ; нефункциональные общие — в одном `NFR.md`, счётчики не пересекаются
+- Открыто / не сделано: сами REQ-001… и первые NFR; блок 3
+- Проверка: ссылки из docs/README на requirements и NFR
+
+## 2026-09-06 — REQ-001…007 + NFR-001
+
+- Сделано: заведены функциональные REQ-001…007 и NFR-001 (адаптив); реестр в requirements/README
+- Файлы: `docs/requirements/REQ-00*.md`, `docs/requirements/NFR.md`, `docs/requirements/README.md`
+- Решения: сквозной сценарий = REQ-001 со ссылками на дочерние; куки — проверить с юристом; REQ-007 тело пока пустое
+- Открыто / не сделано: дописать REQ-007; блок 3 деплой
+- Проверка: список ID в README сходится с файлами
+
+## 2026-09-06 — REQ-007 дописан + smoke ↔ REQ
+
+- Сделано: заполнен REQ-007 по фактам лендинга; smoke-checklist привязан к REQ/NFR
+- Файлы: `docs/requirements/REQ-007.md`, `docs/qa/smoke-checklist.md`, `docs/requirements/README.md`
+- Решения: юридический контур = оферта + privacy + pd-consent + контакты/ИНН
+- Открыто / не сделано: thank-you (REQ-006) ещё to-be; сверка REQ-002/003 с кодом; блок 3
+- Проверка: ссылки из REQ-007 совпадают с `index.html`
+
+## 2026-09-06 — REQ по замечаниям ментора
+
+- Сделано: правки REQ-001…006 + реестр: контур as-is/to-be/mixed; AC-001 = чеклист гипотезы; REQ-002/003 сведены к одной правде (код: Метрика всегда; privacy: только Accept — gap); thank-you = to-be; AC-006 = URL + noindex; заметка про будущий REQ-008 ops
+- Файлы: `docs/requirements/REQ-00*.md`, `docs/requirements/README.md`
+- Решения: не чинить код метрики в этом шаге — сначала юрист + выбор модели; ops-отчёт вне сайт-REQ
+- Открыто / не сделано: решение юриста и выравнивание `metrika.js` ↔ privacy; реализация REQ-006; блок 3
+- Проверка: `metrika.js` — `loadMetrika()` на каждый DOMContentLoaded без проверки consent
+
+## 2026-09-06 — smoke-checklist заполнен
+
+- Сделано: в `docs/qa/smoke-checklist.md` прописаны smoke S1–S13 (шаги + ожидание + REQ), to-be вынесены отдельно, примечание по gap Метрика/cookie
+- Файлы: `docs/qa/smoke-checklist.md`
+- Решения: смоук только as-is на проде; полный гейт формы и thank-you не блокируют релизный смоук
+- Открыто / не сделано: первый прогон по проду; блок 3 при необходимости
+- Проверка: пункты сверены с `index.html` (якоря, pay-links, legal, form, cookie)
+
+## 2026-09-06 — блок 2: организация артефактов (итог)
+
+- Сделано: структура `docs/` (architecture, requirements, qa) + `docs/README.md` (карта + зоны A/B/C/D что в git); REQ-001…007 и NFR-001 с раздельными индексами и полем Контур (as-is/to-be/mixed); smoke S1–S13 с привязкой к REQ; гигиена репо (samples vs Отчёты, .gitignore ПДн); правки REQ по ментору
+- Файлы: `docs/README.md`, `docs/architecture.md`, `docs/requirements/*`, `docs/qa/smoke-checklist.md`, `samples/`, `.gitignore`
+- Решения: один источник правды в репо; ПДн/ответы/рабочие отчёты не в git; сайт-REQ отдельно от ops (позже REQ-008); gap Метрика↔cookie зафиксирован, код не ломали до юриста
+- Открыто / не сделано: первый прогон smoke на проде; юрист + выравнивание metrika/privacy; thank-you (REQ-006); блок 3 (свой цикл деплоя)
+- Проверка: критерий блока 2 — за ~10 мин видно где REQ, деплой (`DEPLOY-MANUAL.md`), клиентские данные (зона B локально)

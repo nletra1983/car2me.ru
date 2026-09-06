@@ -7,7 +7,7 @@
 | Что нужно | Куда |
 |-----------|------|
 | Как устроена система сейчас | [architecture.md](architecture.md) + [Architecture AS IS.drawio](Architecture%20AS%20IS.drawio) |
-| Требования (REQ) | [requirements/](requirements/) |
+| Требования (REQ / NFR) | [requirements/](requirements/) · [NFR.md](requirements/NFR.md) |
 | Смоук перед релизом | [qa/smoke-checklist.md](qa/smoke-checklist.md) |
 | Как публиковать сайт | [../DEPLOY-MANUAL.md](../DEPLOY-MANUAL.md) |
 | Лог работ (мост к ментору) | [SESSION-LOG.md](SESSION-LOG.md) |
