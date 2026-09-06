@@ -137,16 +137,94 @@ nslookup car2me.ru 8.8.8.8
 
 ## Дальнейшие обновления сайта
 
-После правок в Cursor:
+После правок в `D:\car2me-site` (PowerShell):
 
 ```powershell
 cd D:\car2me-site
-git add .
+git status
+git add путь\к\файлу   # см. шпаргалку ниже — лучше не git add .
 git commit -m "Update content"
 git push
 ```
 
-Сайт обновится за 1–2 минуты.
+Сайт на https://car2me.ru обновится за **1–2 минуты** (ветка `main` → GitHub Pages).
+
+Сообщения коммитов — **на английском**. В PowerShell команды лучше через `;`, не через `&&`.
+
+---
+
+## Шпаргалка Git (деплой и add)
+
+Рабочая папка: `D:\car2me-site`. Репозиторий: `nletra1983/car2me.ru`.
+
+### Смотреть состояние
+
+| Команда | Зачем |
+|---------|--------|
+| `git status` | Что изменено, что в «корзине» (staged), что ещё нет |
+| `git status -sb` | Короткий статус + синхрон с `origin/main` |
+| `git diff` | Правки ещё не в корзине |
+| `git diff --staged` | Правки уже в корзине, до commit |
+| `git log --oneline -5` | Последние коммиты |
+
+### Добавить в корзину следующего коммита (`add`)
+
+`git add` = положить файлы в корзину. На GitHub они попадут только после `commit` + `push`.
+
+| Команда | Зачем |
+|---------|--------|
+| `git add index.html` | Один файл |
+| `git add docs/requirements/` | Вся папка |
+| `git add docs/qa/smoke-checklist.md docs/README.md` | Несколько путей сразу |
+| `git restore --staged путь` | Убрать из корзины (файл на диске останется) |
+
+**Пока учишься — не используй `git add .`**, чтобы случайно не закоммитить лишнее. Указывай пути явно.
+
+### Что обычно кладём / не кладём
+
+| Класть в add (зона сайта / docs) | Не класть (часто в `.gitignore`) |
+|----------------------------------|----------------------------------|
+| `index.html`, legal-страницы, `samples/` | `Ответы/`, клиентские файлы в `Отчёты/` |
+| `docs/` (требования, смоук, architecture) | `author.jpg`, `author-original.jpg`, личные PDF |
+| Правки витрины, которые должны быть на проде | `scripts/__pycache__/`, `.bkp` |
+
+Карта зон: [docs/README.md](docs/README.md).
+
+### Зафиксировать и опубликовать
+
+| Команда | Зачем |
+|---------|--------|
+| `git commit -m "Short English message"` | Зафиксировать корзину локально |
+| `git push` | Отправить на GitHub → обновление Pages |
+| `git push -u origin main` | Первый push ветки (уже настроено) |
+
+Типичный цикл после проверки `git status`:
+
+```powershell
+cd D:\car2me-site
+git add index.html
+git commit -m "Update hero copy"
+git push
+```
+
+Два логических коммита (пример: сначала docs, потом лендинг):
+
+```powershell
+git add docs/requirements/ docs/qa/smoke-checklist.md docs/README.md docs/SESSION-LOG.md
+git commit -m "Add REQ/NFR and smoke checklist"
+git add index.html
+git commit -m "Update hero CTA hint copy"
+git push
+```
+
+### Если что-то пошло не так
+
+| Симптом | Что сделать |
+|---------|-------------|
+| В корзине лишний файл | `git restore --staged путь` |
+| Прод не изменился через 2–3 мин | Обновить без кэша (Ctrl+F5); проверить, что push прошёл и правка в `main` на GitHub |
+| `git push` просит пароль | Personal Access Token (не пароль от GitHub) |
+| Не уверена, что add | Снова `git status` — зелёное/staged поедет в commit |
 
 ---
 
