@@ -9,7 +9,7 @@
 | Как устроена система сейчас | [architecture.md](architecture.md) + [Architecture AS IS.drawio](Architecture%20AS%20IS.drawio) |
 | Требования (REQ / NFR) | [requirements/](requirements/) · [NFR.md](requirements/NFR.md) |
 | Смоук перед релизом | [qa/smoke-checklist.md](qa/smoke-checklist.md) |
-| Как публиковать сайт | [../DEPLOY-MANUAL.md](../DEPLOY-MANUAL.md) |
+| Как публиковать сайт | [how-i-deploy.md](how-i-deploy.md) (мой цикл) · [../DEPLOY-MANUAL.md](../DEPLOY-MANUAL.md) (подробно) |
 | Лог работ (мост к ментору) | [SESSION-LOG.md](SESSION-LOG.md) |
 | План дня ландшафта | [HANDOFF-landscape-day1.md](HANDOFF-landscape-day1.md) |
 
