@@ -746,7 +746,7 @@
       display: grid;
       gap: 1rem;
       margin-top: 1.5rem;
-      align-items: start;
+      align-items: stretch;
     }
 
     @media (min-width: 560px) {
@@ -787,33 +787,22 @@
       word-break: break-all;
     }
 
-    .qr-placeholder {
-      width: 140px;
-      height: 140px;
-      margin: 0.75rem auto 0;
-      background: var(--surface-2);
-      border: 1px dashed var(--border);
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-      padding: 0.5rem;
-    }
-
-    .qr-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
     .order-flow {
       background: var(--accent-soft);
       border: 1px solid rgba(61, 139, 253, 0.2);
       border-radius: var(--radius);
-      padding: 1rem 1.25rem;
-      margin-top: 1.5rem;
+      padding: 1.15rem 1.25rem;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .order-flow > p {
+      margin: 0 0 0.65rem;
+      color: var(--text);
+      font-weight: 600;
     }
 
     .order-flow ol {
@@ -866,31 +855,29 @@
 
     .cookie-banner {
       position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      bottom: 1rem;
+      right: 1rem;
+      left: auto;
       z-index: 100;
-      padding: 1rem 1.25rem;
+      width: min(22rem, calc(100vw - 2rem));
+      padding: 1rem 1.1rem;
       background: var(--surface-2);
-      border-top: 1px solid var(--border);
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
     }
 
     .cookie-banner-inner {
-      max-width: var(--max);
-      margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.75rem 1rem;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.85rem;
     }
 
     .cookie-banner p {
-      flex: 1 1 220px;
       margin: 0;
-      font-size: 0.88rem;
-      line-height: 1.5;
+      font-size: 0.85rem;
+      line-height: 1.45;
       color: var(--muted);
     }
 
@@ -902,12 +889,12 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      flex-shrink: 0;
     }
 
     .cookie-banner .btn {
       padding: 0.55rem 1.1rem;
       font-size: 0.9rem;
+      flex: 1 1 auto;
     }
   </style>
 </head>
@@ -916,7 +903,6 @@
   <header>
     <div class="wrap header-inner">
       <a href="#" class="logo">Car<span>2</span>Me</a>
-      <a href="#order" class="btn btn-primary header-cta">Заказать за 2 000 ₽</a>
     </div>
   </header>
 
@@ -932,7 +918,7 @@
         <div class="price-row">
           <span class="price">2 000 ₽</span>
           <span class="price-old">3 500 ₽</span>
-          <span class="price-note">до 15 сентября 2026</span>
+          <span class="price-note">до 25 сентября 2026</span>
         </div>
 
         <div class="cta-group">
@@ -994,7 +980,7 @@
             <div class="step-num">1</div>
             <div class="step-body">
               <h3>Оплатите 2 000 ₽</h3>
-              <p>QR-код, ссылка Сбербанка или перевод по номеру телефона через СБП.</p>
+              <p>Ссылка Сбербанка или перевод по номеру телефона через СБП.</p>
             </div>
           </div>
           <div class="step">
@@ -1167,10 +1153,10 @@
         </div>
         <div class="why-item" style="margin-top:1.5rem">
           <span class="section-label">Почему сейчас</span>
-          <h3 class="why-headline">До 15 сентября — 2 000 ₽</h3>
-          <p>После 15 сентября цена вырастет до 3 500 ₽. Заказав сегодня, получите полный shortlist в течение 24 часов после заполнения формы.</p>
+          <h3 class="why-headline">До 25 сентября — 2 000 ₽</h3>
+          <p>После 25 сентября цена вырастет до 3 500 ₽. Заказав сегодня, получите полный shortlist в течение 24 часов после заполнения формы.</p>
           <div class="urgency">
-            <p>⏱ <strong>2 000 ₽</strong> действует до <strong>15 сентября 2026</strong>. Потом — <strong>3 500 ₽</strong>.</p>
+            <p>⏱ <strong>2 000 ₽</strong> действует до <strong>25 сентября 2026</strong>. Потом — <strong>3 500 ₽</strong>.</p>
           </div>
         </div>
       </div>
@@ -1186,25 +1172,24 @@
         <div class="price-row" style="margin-top:1rem">
           <span class="price">2 000 ₽</span>
           <span class="price-old">3 500 ₽</span>
-          <span class="price-note">до 15 сентября</span>
+          <span class="price-note">до 25 сентября</span>
         </div>
 
         <div class="pay-methods">
-          <div class="pay-method">
-            <div class="pay-method-icon">📱</div>
-            <h3>QR-код · 2 000 ₽</h3>
-            <p>Отсканируйте в приложении банка (СБП)</p>
-            <div class="qr-placeholder" id="qr-code">
-              <img src="qr-pay.jpg" alt="QR-код для оплаты 2000 рублей" width="140" height="140">
-            </div>
-            <a href="https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79219566853&amp;bankCode=100000000111" class="pay-link-btn" target="_blank" rel="noopener noreferrer">Открыть оплату в Сбербанке →</a>
-          </div>
           <div class="pay-method">
             <div class="pay-method-icon">💳</div>
             <h3>По номеру телефона</h3>
             <p>СБП или перевод в Сбербанк. Сумма: <strong style="color:var(--text)">2 000 ₽</strong>. В комментарии: <strong style="color:var(--text)">car2me</strong></p>
             <span class="pay-detail" id="pay-phone">+7 921 956-68-53</span>
             <a href="https://www.sberbank.ru/ru/choise_bank?requisiteNumber=79219566853&amp;bankCode=100000000111" class="pay-link-btn" target="_blank" rel="noopener noreferrer">Ссылка для оплаты →</a>
+          </div>
+          <div class="order-flow">
+            <p>После оплаты:</p>
+            <ol>
+              <li>Прокрутите ниже к форме</li>
+              <li><strong>Прикрепите скрин</strong> подтверждения перевода</li>
+              <li>Заполните вопросы о критериях — 15–20 минут</li>
+            </ol>
           </div>
         </div>
 
@@ -1213,22 +1198,6 @@
           Данные из формы обрабатываются по <a href="privacy.html">политике персональных данных</a>;
           перед отправкой нужно дать <a href="pd-consent.html">согласие</a>.
         </p>
-
-        <div class="order-flow">
-          <p style="color:var(--text);margin-bottom:0.65rem;font-weight:600">После оплаты:</p>
-          <ol>
-            <li>Прокрутите ниже к форме или нажмите кнопку</li>
-            <li><strong>Прикрепите скрин</strong> подтверждения перевода</li>
-            <li>Заполните вопросы о критериях — 15–20 минут</li>
-          </ol>
-        </div>
-
-        <div class="card" style="margin-top:1.5rem;text-align:center;padding:2rem 1.5rem">
-          <a href="#form" class="btn btn-primary" id="form-btn" style="width:100%;max-width:360px">
-            Я оплатил(а) — заполнить форму
-          </a>
-     
-        </div>
 
         <div class="form-embed anchor-target" id="form">
           <span class="section-label">Форма заказа</span>
@@ -1247,7 +1216,7 @@
     <section class="final-cta">
       <div class="wrap">
         <h2>Готовы сузить выбор до подходящих моделей?</h2>
-        <p>2 000 ₽ до 15 сентября · результат за 24 часа</p>
+        <p>2 000 ₽ до 25 сентября · результат за 24 часа</p>
         <div class="cta-group" style="justify-content:center;margin-top:1.25rem">
           <a href="#order" class="btn btn-primary">Заказать за 2 000 ₽</a>
         </div>
