@@ -1,6 +1,19 @@
 /**
  * Яндекс.Метрика — car2me.ru
  * Цели в интерфейсе Метрики: тип «JavaScript-событие», идентификаторы из GOALS
+ *
+ * Как настроены (клики / показ секции):
+ * - cta_order     — клик по ссылке на #order («Заказать топ-лист»)
+ * - cta_form      — клик по ссылке на #form («Оплачено. Перейти к анкете»)
+ * - cta_case      — открытие примера отчёта (PDF) / ссылки превью матрицы
+ * - case_expand   — раскрытие «Читать полный кейс» (<details>, только при open)
+ * - section_order — доскролл до блока #order (~35% видимости, 1 раз)
+ * - section_form  — доскролл до #form (внутри заказа; 1 раз)
+ * - section_case  — доскролл до блока #case (~35% видимости, 1 раз)
+ * - pay_sber      — клик «Ссылка для оплаты» (.pay-link-btn)
+ * - cookie_accept — «Принять» в cookie-баннере
+ *
+ * Яндекс.Формы: цели уже в настройках Метрики (не дублируем здесь).
  */
 const METRIKA_ID = 112130182;
 
@@ -8,8 +21,10 @@ const GOALS = {
   ctaOrder: 'cta_order',
   ctaForm: 'cta_form',
   ctaCase: 'cta_case',
+  caseExpand: 'case_expand',
   sectionOrder: 'section_order',
   sectionForm: 'section_form',
+  sectionCase: 'section_case',
   paySber: 'pay_sber',
   cookieAccept: 'cookie_accept',
 };
@@ -88,6 +103,16 @@ function initConsentBanner() {
   });
 }
 
+function isHashLink(href, hash) {
+  if (!href) return false;
+  return href === hash || href.endsWith(hash) || href.includes(hash);
+}
+
+function isSampleReportLink(link, href) {
+  if (link.classList.contains('report-preview-link')) return true;
+  return /primer-otchyota\.pdf/i.test(href) || /samples\/.*\.pdf/i.test(href);
+}
+
 function initClickGoals() {
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[href]');
@@ -95,13 +120,14 @@ function initClickGoals() {
 
     const href = link.getAttribute('href') || '';
 
-    if (href === '#order' || href.includes('#order')) {
+    if (isHashLink(href, '#order')) {
       reachGoal(GOALS.ctaOrder);
     }
-    if (href === '#form' || link.id === 'form-btn') {
+    if (isHashLink(href, '#form') || link.id === 'form-btn') {
       reachGoal(GOALS.ctaForm);
     }
-    if (href === '#case') {
+    // Раньше: «Смотреть реальный пример» → #case. Сейчас тот же смысл — открыть пример отчёта.
+    if (isHashLink(href, '#case') || isSampleReportLink(link, href)) {
       reachGoal(GOALS.ctaCase);
     }
     if (link.classList.contains('pay-link-btn')) {
@@ -110,10 +136,23 @@ function initClickGoals() {
   });
 }
 
+function initCaseExpandGoal() {
+  const details = document.querySelector('details.case-details');
+  if (!details) return;
+
+  let fired = false;
+  details.addEventListener('toggle', () => {
+    if (!details.open || fired) return;
+    fired = true;
+    reachGoal(GOALS.caseExpand);
+  });
+}
+
 function initSectionGoals() {
   const sections = [
     { id: 'order', goal: GOALS.sectionOrder },
     { id: 'form', goal: GOALS.sectionForm },
+    { id: 'case', goal: GOALS.sectionCase },
   ];
 
   if (!('IntersectionObserver' in window)) return;
@@ -145,5 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
   loadMetrika();
   initConsentBanner();
   initClickGoals();
+  initCaseExpandGoal();
   initSectionGoals();
 });
