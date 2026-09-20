@@ -11,6 +11,7 @@
 | Смоук перед релизом | [qa/smoke-checklist.md](qa/smoke-checklist.md) |
 | Как публиковать сайт | [how-i-deploy.md](how-i-deploy.md) (мой цикл) · [../DEPLOY-MANUAL.md](../DEPLOY-MANUAL.md) (подробно) |
 | Лог работ (мост к ментору) | [SESSION-LOG.md](SESSION-LOG.md) |
+| Текущая задача агента | [TASK-preview-open.md](TASK-preview-open.md) |
 | План дня ландшафта | [HANDOFF-landscape-day1.md](HANDOFF-landscape-day1.md) |
 
 ## Что в git / что только локально

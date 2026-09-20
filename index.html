@@ -874,10 +874,85 @@
       scrollbar-gutter: stable;
     }
 
+    .report-preview-hint {
+      margin: 0 0 0.75rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .report-preview-image-btn {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: none;
+      background: none;
+      cursor: zoom-in;
+      line-height: 0;
+    }
+
     .report-preview-scroll img {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    /* Fullscreen matrix overlay (same page) */
+    .preview-lightbox {
+      box-sizing: border-box;
+      margin: 0;
+      border: none;
+      padding: 0;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+      background: rgba(12, 15, 20, 0.96);
+      color: #fff;
+    }
+
+    .preview-lightbox::backdrop {
+      background: rgba(0, 0, 0, 0.72);
+    }
+
+    .preview-lightbox-close {
+      position: fixed;
+      top: 0.65rem;
+      right: 0.65rem;
+      z-index: 2;
+      width: 2.75rem;
+      height: 2.75rem;
+      margin: 0;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 0.35rem;
+      background: rgba(12, 15, 20, 0.75);
+      color: #fff;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .preview-lightbox-close:hover {
+      background: rgba(12, 15, 20, 0.95);
+    }
+
+    .preview-lightbox-pane {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      padding: 3.25rem 0.5rem 1rem;
+    }
+
+    .preview-lightbox-pane img {
+      display: block;
+      width: 1508px;
+      max-width: none;
+      height: auto;
+      margin: 0;
     }
 
     .report-preview-end {
@@ -1258,6 +1333,7 @@
     <section id="report-examples" class="anchor-target">
       <div class="wrap">
         <h2 class="section-title">Пример отчёта</h2>
+        <p class="report-preview-hint">Нажмите, чтобы увеличить</p>
 
         <div class="report-preview">
           <div class="report-preview-viewport">
@@ -1266,7 +1342,9 @@
                 <div class="report-preview-rip" aria-hidden="true"></div>
                 <a class="report-preview-link" href="samples/primer-otchyota.pdf" download="car2me-primer-otchyota.pdf">Смотреть полный пример</a>
               </div>
-              <img src="content/preview.png" alt="Матрица моделей из примера отчёта Car2Me" width="1508" height="948" decoding="async">
+              <button type="button" class="report-preview-image-btn" id="report-preview-open" aria-haspopup="dialog" aria-controls="preview-lightbox" aria-label="Открыть матрицу крупнее">
+                <img src="content/preview.png" alt="Матрица моделей из примера отчёта Car2Me" width="1508" height="948" decoding="async">
+              </button>
               <div class="report-preview-end report-preview-end--bottom">
                 <a class="report-preview-link" href="samples/primer-otchyota.pdf" download="car2me-primer-otchyota.pdf">Смотреть полный пример</a>
                 <div class="report-preview-rip" aria-hidden="true"></div>
@@ -1460,20 +1538,72 @@
     </div>
   </div>
 
+  <dialog class="preview-lightbox" id="preview-lightbox" aria-label="Матрица моделей крупнее">
+    <button type="button" class="preview-lightbox-close" id="preview-lightbox-close" aria-label="Закрыть">&times;</button>
+    <div class="preview-lightbox-pane" id="preview-lightbox-pane">
+      <img src="content/preview.png" alt="Матрица моделей из примера отчёта Car2Me" width="1508" height="948" decoding="async">
+    </div>
+  </dialog>
+
   <script src="metrika.js"></script>
   <script>
     (function () {
       var sc = document.getElementById("report-preview-scroll");
-      if (!sc) return;
-      var img = sc.querySelector("img");
-      function centerPreview() {
-        sc.scrollTop = Math.max(0, (sc.scrollHeight - sc.clientHeight) / 2);
+      if (sc) {
+        var img = sc.querySelector("img");
+        function centerPreview() {
+          sc.scrollTop = Math.max(0, (sc.scrollHeight - sc.clientHeight) / 2);
+        }
+        if (img && !img.complete) {
+          img.addEventListener("load", centerPreview);
+        } else {
+          centerPreview();
+        }
       }
-      if (img && !img.complete) {
-        img.addEventListener("load", centerPreview);
-      } else {
-        centerPreview();
+
+      var openBtn = document.getElementById("report-preview-open");
+      var dialog = document.getElementById("preview-lightbox");
+      var closeBtn = document.getElementById("preview-lightbox-close");
+      var pane = document.getElementById("preview-lightbox-pane");
+      if (!openBtn || !dialog || !closeBtn || !pane) return;
+
+      function resetLightboxScroll() {
+        pane.scrollLeft = 0;
+        pane.scrollTop = 0;
       }
+
+      function openLightbox() {
+        if (typeof dialog.showModal === "function") {
+          dialog.showModal();
+        } else {
+          dialog.setAttribute("open", "");
+        }
+        requestAnimationFrame(function () {
+          resetLightboxScroll();
+          var lbImg = pane.querySelector("img");
+          if (lbImg && !lbImg.complete) {
+            lbImg.addEventListener("load", resetLightboxScroll, { once: true });
+          }
+        });
+      }
+
+      function closeLightbox() {
+        if (typeof dialog.close === "function") {
+          dialog.close();
+        } else {
+          dialog.removeAttribute("open");
+        }
+      }
+
+      openBtn.addEventListener("click", openLightbox);
+      closeBtn.addEventListener("click", closeLightbox);
+      dialog.addEventListener("click", function (event) {
+        if (event.target === dialog) closeLightbox();
+      });
+      dialog.addEventListener("cancel", function (event) {
+        event.preventDefault();
+        closeLightbox();
+      });
     })();
   </script>
 

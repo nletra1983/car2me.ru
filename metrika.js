@@ -5,7 +5,8 @@
  * Как настроены (клики / показ секции):
  * - cta_order     — клик по ссылке на #order («Заказать топ-лист»)
  * - cta_form      — клик по ссылке на #form («Оплачено. Перейти к анкете»)
- * - cta_case      — открытие примера отчёта (PDF) / ссылки превью матрицы
+ * - cta_case      — открытие примера отчёта (PDF) / ссылки «Смотреть полный пример»
+ * - preview_open  — открытие оверлея с матрицей (тап по тизеру PNG)
  * - case_expand   — раскрытие «Читать полный кейс» (<details>, только при open)
  * - section_order — доскролл до блока #order (~35% видимости, 1 раз)
  * - section_form  — доскролл до #form (внутри заказа; 1 раз)
@@ -21,6 +22,7 @@ const GOALS = {
   ctaOrder: 'cta_order',
   ctaForm: 'cta_form',
   ctaCase: 'cta_case',
+  previewOpen: 'preview_open',
   caseExpand: 'case_expand',
   sectionOrder: 'section_order',
   sectionForm: 'section_form',
@@ -108,6 +110,10 @@ function isHashLink(href, hash) {
   return href === hash || href.endsWith(hash) || href.includes(hash);
 }
 
+function isPreviewOpenTrigger(el) {
+  return !!(el && el.closest && el.closest('.report-preview-image-btn'));
+}
+
 function isSampleReportLink(link, href) {
   if (link.classList.contains('report-preview-link')) return true;
   return /primer-otchyota\.pdf/i.test(href) || /samples\/.*\.pdf/i.test(href);
@@ -115,6 +121,11 @@ function isSampleReportLink(link, href) {
 
 function initClickGoals() {
   document.addEventListener('click', (event) => {
+    if (isPreviewOpenTrigger(event.target)) {
+      reachGoal(GOALS.previewOpen);
+      return;
+    }
+
     const link = event.target.closest('a[href]');
     if (!link) return;
 
@@ -126,8 +137,8 @@ function initClickGoals() {
     if (isHashLink(href, '#form') || link.id === 'form-btn') {
       reachGoal(GOALS.ctaForm);
     }
-    // Раньше: «Смотреть реальный пример» → #case. Сейчас тот же смысл — открыть пример отчёта.
     if (isHashLink(href, '#case') || isSampleReportLink(link, href)) {
+      // Раньше: «Смотреть реальный пример» → #case. Сейчас тот же смысл — открыть PDF-пример.
       reachGoal(GOALS.ctaCase);
     }
     if (link.classList.contains('pay-link-btn')) {
