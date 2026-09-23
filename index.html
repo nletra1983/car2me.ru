@@ -212,10 +212,6 @@
     .mt-6 { margin-top: var(--space-6); }
     .mb-0 { margin-bottom: 0; }
 
-    .form-title {
-      margin: 0 0 var(--space-4);
-    }
-
     a:not(.btn):not(.logo):not(.pay-link-btn):not(.report-preview-link) {
       color: var(--accent);
     }
@@ -864,9 +860,10 @@
     }
 
     .report-preview-scroll {
-      /* ~половина пропорций картинки 1508×948 */
-      aspect-ratio: 1508 / 474;
-      max-height: min(42vh, 280px);
+      /* Фиксированная высота окна: на ~375px виден кусок матрицы, не только PDF-кнопки */
+      height: min(52vh, 400px);
+      min-height: 360px;
+      max-height: 440px;
       overflow-x: auto;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
@@ -1053,12 +1050,6 @@
 
     .disclaimer strong { color: var(--text); }
 
-    .final-cta {
-      text-align: center;
-      padding: 3rem 0 2rem;
-    }
-
-
     .anchor-target {
       scroll-margin-top: 5rem;
     }
@@ -1162,32 +1153,6 @@
 
     .pay-link-btn:hover { text-decoration: underline; }
 
-    .form-embed {
-      margin-top: 2rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem;
-      overflow: hidden;
-    }
-
-    .form-embed iframe {
-      display: block;
-      width: 100%;
-      min-height: 600px;
-      border: none;
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .form-embed-fallback {
-      text-align: center;
-      padding: 1rem 0 0;
-      font-size: 0.9rem;
-    }
-
-    .form-embed-fallback a { color: var(--accent); }
-
     .cookie-banner {
       position: fixed;
       bottom: 1rem;
@@ -1276,7 +1241,7 @@
           <li>Вы можете <span class="em-soft">обратиться к агентам</span> за советом, но они будут предлагать из того, что им удобнее и выгоднее продать.</li>
           <li>Вы можете <span class="em-soft">самостоятельно разбираться</span> в теме, но на это уйдут недели и месяцы.</li>
         </ul>
-        <p class="path-pro">Вместо этого вы можете <span class="em-soft">просто заполнить форму</span> ниже и получить свой персональный список моделей, который объективно подходит под ваши сценарии.</p>
+        <p class="path-pro">Вместо этого вы можете <span class="em-soft">оплатить услугу, заполнить анкету</span> и получить свой персональный список моделей, который объективно подходит под ваши сценарии.</p>
         <p class="section-closing">Не нужно становиться экспертом, чтобы выбрать для себя правильную модель</p>
       </div>
     </section>
@@ -1463,10 +1428,10 @@
       </div>
     </section>
 
-    <!-- Заказ: оплата + форма -->
+    <!-- Заказ: оплата -->
     <section id="order" class="anchor-target">
       <div class="wrap">
-        <h2 class="section-title">Оплатите, чтобы заполнить анкету</h2>
+        <h2 class="section-title">Заказать свой топ-лист</h2>
 
         <div class="pay-methods">
           <div class="pay-method">
@@ -1482,31 +1447,12 @@
               Данные из формы обрабатываются по <a href="privacy.html">политике персональных данных</a>;
               перед отправкой нужно дать <a href="pd-consent.html">согласие</a>.
             </p>
-            <p class="pay-after">После оплаты: прокрутите вниз к анкете, прикрепите документ подтверждения перевода (достаточно скриншота) и заполните анкету.</p>
+            <p class="pay-after">После оплаты нажмите кнопку ниже — откроется страница анкеты. В форме приложите скрин перевода и ответьте на вопросы. Топ-лист придёт на email в течение 24 часов.</p>
           </div>
         </div>
 
         <div class="cta-group cta-group--full">
-          <a href="#form" class="btn btn-primary btn--compact">Оплачено. Перейти к анкете</a>
-        </div>
-
-        <div class="form-embed anchor-target" id="form">
-          <h2 class="form-title">Анкета</h2>
-          <script src="https://forms.yandex.ru/_static/embed.js"></script>
-          <iframe src="https://forms.yandex.ru/cloud/6a9568266d2d731deef825fd?iframe=1" frameborder="0" name="ya-form-6a9568266d2d731deef825fd" title="Анкета Car2Me"></iframe>
-          <p class="form-embed-fallback">
-            Форма не загрузилась?
-            <a href="https://forms.yandex.ru/cloud/6a9568266d2d731deef825fd" target="_blank" rel="noopener noreferrer">Открыть в новой вкладке</a>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="final-cta">
-      <div class="wrap">
-        <div class="cta-group cta-group--full">
-          <a href="#order" class="btn btn-primary">Заказать топ-лист</a>
+          <a href="form.html" class="btn btn-secondary btn--compact" id="form-btn">Я оплатил. Перейти к анкете</a>
         </div>
       </div>
     </section>

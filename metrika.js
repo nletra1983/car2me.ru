@@ -4,12 +4,12 @@
  *
  * Как настроены (клики / показ секции):
  * - cta_order     — клик по ссылке на #order («Заказать топ-лист»)
- * - cta_form      — клик по ссылке на #form («Оплачено. Перейти к анкете»)
+ * - cta_form      — клик по ссылке на form.html / #form-btn («Я оплатил. Перейти к анкете»)
  * - cta_case      — открытие примера отчёта (PDF) / ссылки «Смотреть полный пример»
  * - preview_open  — открытие оверлея с матрицей (тап по тизеру PNG)
  * - case_expand   — раскрытие «Читать полный кейс» (<details>, только при open)
- * - section_order — доскролл до блока #order (~35% видимости, 1 раз)
- * - section_form  — доскролл до #form (внутри заказа; 1 раз)
+ * - section_order — доскролл до блока #order на главной (~35% видимости, 1 раз)
+ * - section_form  — показ #form на form.html (~35% видимости, 1 раз; на главной элемента нет)
  * - section_case  — доскролл до блока #case (~35% видимости, 1 раз)
  * - pay_sber      — клик «Ссылка для оплаты» (.pay-link-btn)
  * - cookie_accept — «Принять» в cookie-баннере
@@ -110,6 +110,11 @@ function isHashLink(href, hash) {
   return href === hash || href.endsWith(hash) || href.includes(hash);
 }
 
+function isFormPageLink(href) {
+  if (!href) return false;
+  return /(?:^|\/)form\.html(?:[?#]|$)/i.test(href);
+}
+
 function isPreviewOpenTrigger(el) {
   return !!(el && el.closest && el.closest('.report-preview-image-btn'));
 }
@@ -134,7 +139,7 @@ function initClickGoals() {
     if (isHashLink(href, '#order')) {
       reachGoal(GOALS.ctaOrder);
     }
-    if (isHashLink(href, '#form') || link.id === 'form-btn') {
+    if (isFormPageLink(href) || isHashLink(href, '#form') || link.id === 'form-btn') {
       reachGoal(GOALS.ctaForm);
     }
     if (isHashLink(href, '#case') || isSampleReportLink(link, href)) {

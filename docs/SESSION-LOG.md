@@ -385,5 +385,18 @@
 - Файлы: `index.html`, `metrika.js`, `docs/TASK-preview-*.md`
 - Проверка: `git push` OK → https://car2me.ru (1–2 мин)
 
+## 2026-09-22 — анкета на form.html + высота тизера
+
+- Сделано: новая `form.html` (noindex, iframe Яндекс.Формы, metrika + cookie); с `#order` убран embed; заголовок «Заказать свой топ-лист»; кнопка «Я оплатил. Перейти к анкете» → `form.html`; `cta_form` / `section_form` под новый URL; тизер выше (`min-height: 360px`)
+- Файлы: `form.html`, `index.html`, `metrika.js`, `docs/qa/smoke-checklist.md`
+- Решения: оплата и анкета на разных страницах; оверлей/кейс/«Важно»/Сбер без изменений; деплой не делали
+- Проверка: локально главная + form.html; grep `#form` на главной — пусто
+
+## 2026-09-23 — публикация: form.html + правки заказа
+
+- Сделано: push на GitHub Pages — анкета на `form.html`, блок «Заказать свой топ-лист», кнопка «Я оплатил» secondary, убран нижний Final CTA, выше тизер превью
+- Файлы: `form.html`, `index.html`, `metrika.js`, `docs/qa/smoke-checklist.md`
+- Проверка: `git push` → https://car2me.ru / form.html
+
 
 

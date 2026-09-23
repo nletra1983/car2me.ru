@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Анкета — Car2Me</title>
+  <meta name="theme-color" content="#0c0f14">
+  <style>
+    :root {
+      --bg: #0c0f14;
+      --surface: #151a22;
+      --surface-2: #1c2330;
+      --border: #2a3344;
+      --text: #eef2f7;
+      --muted: #8b97a8;
+      --accent: #3d8bfd;
+      --accent-hover: #5a9dff;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --max: 720px;
+      --btn-pad-y: 0.85rem;
+      --btn-pad-x: 1.5rem;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 1.05rem;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    header {
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(12, 15, 20, 0.92);
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    main {
+      padding: 2rem 0 3rem;
+    }
+
+    h1 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.2rem, 3.5vw, 1.45rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--accent);
+    }
+
+    .form-lead {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .form-embed {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .form-embed iframe {
+      display: block;
+      width: 100%;
+      min-height: 600px;
+      border: none;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .form-embed-fallback {
+      text-align: center;
+      padding: 1rem 0 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .form-embed-fallback a,
+    .form-embed-fallback a:visited {
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 1.5rem 0 2.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--accent-hover); }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .cookie-banner {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      left: auto;
+      z-index: 100;
+      width: min(22rem, calc(100vw - 2rem));
+      padding: 1rem 1.1rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .cookie-banner-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.85rem;
+    }
+
+    .cookie-banner p {
+      margin: 0;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .cookie-banner a { color: var(--accent); }
+
+    .cookie-banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cookie-banner .btn {
+      flex: 1 1 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a class="logo" href="index.html">Car<span>2</span>Me</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Анкета</h1>
+      <p class="form-lead">
+        Заполните анкету после оплаты. Приложите скрин перевода в форме.
+        Топ-лист моделей придёт на email в течение 24 часов.
+      </p>
+
+      <div class="form-embed anchor-target" id="form">
+        <script src="https://forms.yandex.ru/_static/embed.js"></script>
+        <iframe src="https://forms.yandex.ru/cloud/6a9568266d2d731deef825fd?iframe=1" frameborder="0" name="ya-form-6a9568266d2d731deef825fd" title="Анкета Car2Me"></iframe>
+        <p class="form-embed-fallback">
+          Форма не загрузилась?
+          <a href="https://forms.yandex.ru/cloud/6a9568266d2d731deef825fd" target="_blank" rel="noopener noreferrer">Открыть в новой вкладке</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><a href="index.html">← На главную</a> · <a href="offer.html">Оферта</a> · <a href="privacy.html">Персональные данные</a></p>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner" hidden>
+    <div class="cookie-banner-inner">
+      <p>Сайт использует cookie и Яндекс.Метрику для статистики посещений. Подробнее — в <a href="privacy.html">политике персональных данных</a>.</p>
+      <div class="cookie-banner-actions">
+        <button type="button" class="btn btn-secondary" id="cookie-decline">Только необходимое</button>
+        <button type="button" class="btn btn-primary" id="cookie-accept">Принять</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="metrika.js"></script>
+</body>
+</html>
