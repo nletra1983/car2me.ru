@@ -860,10 +860,10 @@
     }
 
     .report-preview-scroll {
-      /* Фиксированная высота окна: на ~375px виден кусок матрицы, не только PDF-кнопки */
-      height: min(52vh, 400px);
-      min-height: 360px;
-      max-height: 440px;
+      /* ~2/3 прежней высоты: на мобилке проще проскроллить страницу мимо тизера */
+      height: min(35vh, 270px);
+      min-height: 240px;
+      max-height: 295px;
       overflow-x: auto;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
@@ -891,7 +891,15 @@
     .report-preview-scroll img {
       display: block;
       width: 100%;
+      max-width: none;
       height: auto;
+    }
+
+    /* Телефон: в рамке видна ~половина ширины матрицы, старт с левого верхнего края */
+    @media (max-width: 639px) {
+      .report-preview-image-btn {
+        width: 200%;
+      }
     }
 
     /* Fullscreen matrix overlay (same page) */
@@ -1497,13 +1505,19 @@
       var sc = document.getElementById("report-preview-scroll");
       if (sc) {
         var img = sc.querySelector("img");
-        function centerPreview() {
-          sc.scrollTop = Math.max(0, (sc.scrollHeight - sc.clientHeight) / 2);
+        function resetPreviewScroll() {
+          sc.scrollLeft = 0;
+          // Верхняя ссылка «Смотреть полный пример» выше видимой рамки;
+          // в окне — верхний левый край картинки.
+          var topEnd = sc.querySelector(".report-preview-end--top");
+          sc.scrollTop = topEnd ? topEnd.offsetHeight : 0;
         }
         if (img && !img.complete) {
-          img.addEventListener("load", centerPreview);
+          img.addEventListener("load", function () {
+            requestAnimationFrame(resetPreviewScroll);
+          });
         } else {
-          centerPreview();
+          requestAnimationFrame(resetPreviewScroll);
         }
       }
 
